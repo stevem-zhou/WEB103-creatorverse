@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useRoutes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { supabase } from "./client";
+import ShowCreators from "./components/pages/ShowCreators/ShowCreators";
+import ViewCreator from "./components/pages/ViewCreator";
+import EditCreator from "./components/pages/EditCreator";
+import AddCreator from "./components/pages/AddCreator";
+import "@picocss/pico";
+import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+  useEffect(() => {
+    async function fetch() {
+      try {
+        const res = await supabase.from("creators").select();
+        setCreators(res.data);
+      } catch (err) {
+        console.log(err);
+      }
+    }
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    fetch();
+  }, []);
+
+  const [creators, setCreators] = useState([]);
+
+  let element = useRoutes([
+    {
+      path: "/",
+      element: <ShowCreators creators={creators} />,
+    },
+    { path: "/new", element: <AddCreator /> },
+    { path: "/edit", element: <EditCreator /> },
+    { path: "/view", element: <ViewCreator /> },
+  ]);
+
+  return <>{element}</>;
 }
 
-export default App
+export default App;
