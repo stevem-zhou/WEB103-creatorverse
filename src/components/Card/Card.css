@@ -10,8 +10,10 @@
 
 .img--container{
     width: 35%;
+    height: 80%;
     margin-left: 3%;
     border-radius: 100%;
+    object-fit: cover;
 }
 
 .info--container{
@@ -21,6 +23,7 @@
     margin-right: 5%;
     margin-left: 5%;
     max-height: 80%;
+    max-width: 30%;
 }
 
 .description--container, .name--container, .url--container{
@@ -38,45 +41,16 @@
     font-size: 400px;
 }
 
+.edit-view--button{
+    width: 5rem;
+    text-align: center;
+    font-size: 15px;
+    margin: 5%;
+}
 
-
-/* 
-.info--container{
+.button--container{
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
-    flex: 1;
-    width: 15vw;
-    gap: 5%;
+    margin-right: 3%;
 }
-
-.inner-info--container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 15vw;
-    max-height: 10vh;
-    padding: 0;
-    margin: 0;
-}
-
-.description--container{
-    display: -webkit-box;
-    max-width: 15vw;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    margin: 0;
-}
-
-.img--container{
-    display: flex;
-    width: 10rem;
-    height: 10rem;
-    border-radius: 100%;
-    overflow: hidden;
-    justify-content: center;
-    align-items: center;
-    margin-right: 5%;
-} */

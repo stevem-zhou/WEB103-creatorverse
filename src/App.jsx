@@ -5,7 +5,7 @@ import ShowCreators from "./components/pages/ShowCreators/ShowCreators";
 import ViewCreator from "./components/pages/ViewCreator";
 import EditCreator from "./components/pages/EditCreator";
 import AddCreator from "./components/pages/AddCreator";
-import "@picocss/pico";
+// import "@picocss/pico";
 import "./App.css";
 
 function App() {
@@ -30,8 +30,8 @@ function App() {
       element: <ShowCreators creators={creators} />,
     },
     { path: "/new", element: <AddCreator /> },
-    { path: "/edit", element: <EditCreator /> },
-    { path: "/view", element: <ViewCreator /> },
+    { path: "/edit/:id", element: <EditCreator creators={creators}/> },
+    { path: "/view/:id", element: <ViewCreator creators={creators}/> },
   ]);
 
   return <>{element}</>;

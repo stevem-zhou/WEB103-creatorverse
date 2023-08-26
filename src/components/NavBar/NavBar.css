@@ -1,0 +1,24 @@
+.title{
+    text-align: center;
+    margin-top: 5vh;
+    margin-bottom: 1rem;
+}
+
+.heading{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons--container{
+    display: flex;
+    width:  100vw;
+    justify-content: center;
+    align-items: center;
+    gap: 5%;
+}
+
+.add-view--button{
+    max-width: 13vw;
+}
