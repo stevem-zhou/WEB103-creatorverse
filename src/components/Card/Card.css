@@ -8,6 +8,10 @@
     margin: 1%;
 }
 
+.name--container{
+    width: 10rem;
+}
+
 .img--container{
     width: 35%;
     height: 80%;

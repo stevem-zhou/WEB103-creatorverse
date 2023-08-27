@@ -2,13 +2,15 @@ import { useRoutes } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { supabase } from "./client";
 import ShowCreators from "./components/pages/ShowCreators/ShowCreators";
-import ViewCreator from "./components/pages/ViewCreator";
+import ViewCreator from "./components/pages/ViewCreator/ViewCreator";
 import EditCreator from "./components/pages/EditCreator";
-import AddCreator from "./components/pages/AddCreator";
-// import "@picocss/pico";
+import AddCreator from "./components/pages/AddCreator/AddCreator";
+import "@picocss/pico";
 import "./App.css";
 
 function App() {
+  const [creators, setCreators] = useState([]);
+
   useEffect(() => {
     async function fetch() {
       try {
@@ -20,9 +22,7 @@ function App() {
     }
 
     fetch();
-  }, []);
-
-  const [creators, setCreators] = useState([]);
+  }, [creators]);
 
   let element = useRoutes([
     {
@@ -30,8 +30,8 @@ function App() {
       element: <ShowCreators creators={creators} />,
     },
     { path: "/new", element: <AddCreator /> },
-    { path: "/edit/:id", element: <EditCreator creators={creators}/> },
-    { path: "/view/:id", element: <ViewCreator creators={creators}/> },
+    { path: "/edit/:id", element: <EditCreator setCreators={setCreators} /> },
+    { path: "/view/:id", element: <ViewCreator creators={creators} /> },
   ]);
 
   return <>{element}</>;

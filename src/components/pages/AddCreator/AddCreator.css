@@ -1,0 +1,13 @@
+.form{
+    margin: 10%;
+    margin-top: 3%;
+}
+
+.input{
+    background-color: rgb(247, 240, 240);
+}
+
+.label{
+color: rgb(44, 43, 43);
+font-weight: bold;
+}

@@ -3,7 +3,7 @@ import NavBar from "../NavBar/NavBar";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../../client";
 
-export default function EditCreator() {
+export default function EditCreator(props) {
   const { id } = useParams();
   const [updateCreator, setUpdateCreator] = useState(null);
   const navigate = useNavigate();
@@ -24,7 +24,19 @@ export default function EditCreator() {
   async function handleSubmit(event) {
     event.preventDefault();
     try {
-      await supabase.from("creators").update(updateCreator).eq("id", id);
+      await supabase
+        .from("creators")
+        .update(updateCreator)
+        .eq("id", id)
+        .then(navigate("/"));
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  async function handleDelete() {
+    try {
+      await supabase.from("creators").delete().eq("id", id);
     } catch (err) {
       console.log(err);
     }
@@ -33,10 +45,11 @@ export default function EditCreator() {
   return updateCreator ? (
     <div className="body">
       <NavBar />
-      <form onSubmit={handleSubmit} action="/">
-        <label>
+      <form onSubmit={handleSubmit} className="form">
+        <label className="label">
           Name:
           <input
+            className="input"
             type="text"
             name="name"
             value={updateCreator.name}
@@ -48,9 +61,10 @@ export default function EditCreator() {
             }
           />
         </label>
-        <label>
+        <label className="label">
           Description:
           <input
+            className="input"
             type="text"
             name="description"
             value={updateCreator.description}
@@ -62,9 +76,10 @@ export default function EditCreator() {
             }
           />
         </label>
-        <label>
-          URL:
+        <label className="label">
+          YouTube Channel:
           <input
+            className="input"
             type="text"
             name="url"
             value={updateCreator.url}
@@ -76,9 +91,10 @@ export default function EditCreator() {
             }
           />
         </label>
-        <label>
+        <label className="label">
           ImageURL:
           <input
+            className="input"
             type="text"
             name="imageUrl"
             value={updateCreator.imageURL}
@@ -91,6 +107,14 @@ export default function EditCreator() {
           />
         </label>
         <input type="submit" />
+        <input
+          type="button"
+          value="Delete"
+          onClick={() => {
+            handleDelete();
+            navigate("/");
+          }}
+        />
       </form>
     </div>
   ) : (

@@ -19,7 +19,7 @@ export default function ShowCreators({ creators }) {
     <div className="body">
       <NavBar />
       <div className="card--container">
-        {creators.length > 0 ? creatorCards : <div>THERES NO CREATORS</div>}
+        {creators ? creatorCards : <div>THERES NO CREATORS</div>}
       </div>
     </div>
   );

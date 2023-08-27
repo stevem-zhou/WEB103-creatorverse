@@ -15,7 +15,7 @@ export default function Card(props) {
       <div className="info--container">
         <h2 className="name--container">{props.name}</h2>
         <p className="description--container">{props.description}</p>
-        <p className="url--container">{props.url}</p>
+        <a className="url--container" href={props.url}>Channel</a>
       </div>
       <div className="button--container">
         <button

@@ -1,6 +1,8 @@
 import { React, useState } from "react";
-import NavBar from "../NavBar/NavBar";
-import { supabase } from "../../client";
+import NavBar from "../../NavBar/NavBar";
+import { supabase } from "../../../client";
+import "./AddCreator.css";
+import { useNavigate } from "react-router-dom";
 
 export default function AddCreator() {
   const [newCreator, setNewCreator] = useState({
@@ -10,10 +12,13 @@ export default function AddCreator() {
     imageURL: "",
   });
 
+  const navigate = useNavigate();
+
   async function handleSubmit(event) {
     event.preventDefault();
     try {
       await supabase.from("creators").insert(newCreator);
+      navigate("/")
     } catch (err) {
       console.log(err);
     }
@@ -22,10 +27,11 @@ export default function AddCreator() {
   return (
     <div className="body">
       <NavBar />
-      <form onSubmit={handleSubmit}>
-        <label>
+      <form onSubmit={handleSubmit} className="form">
+        <label className="label">
           Name:
           <input
+            className="input"
             type="text"
             name="name"
             onChange={(event) =>
@@ -36,9 +42,10 @@ export default function AddCreator() {
             }
           />
         </label>
-        <label>
+        <label className="label">
           Description:
           <input
+            className="input"
             type="text"
             name="description"
             onChange={(event) =>
@@ -49,9 +56,10 @@ export default function AddCreator() {
             }
           />
         </label>
-        <label>
-          URL:
+        <label className="label">
+          YouTube Channel:
           <input
+            className="input"
             type="text"
             name="url"
             onChange={(event) =>
@@ -62,9 +70,10 @@ export default function AddCreator() {
             }
           />
         </label>
-        <label>
+        <label className="label">
           ImageURL:
           <input
+            className="input"
             type="text"
             name="imageUrl"
             onChange={(event) =>
@@ -75,7 +84,7 @@ export default function AddCreator() {
             }
           />
         </label>
-        <input type="submit" />
+        <input className="input" type="submit" />
       </form>
     </div>
   );
