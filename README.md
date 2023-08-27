@@ -4,7 +4,7 @@ Submitted by: **👉🏿 Steven Zhou**
 
 About this web app: **👉🏿 This app allows users to share their favorite Youtubers, whether it may be because they are the best at what they do or it's just because of the nostalgia that the content creator gives. Users are also able to edit their postings after they have intially posted a Youtuber and they are able to delete them if they would like to.**
 
-Time spent: **👉🏿 15** hours
+Time spent: **👉🏿 17** hours
 
 ## Required Features
 
